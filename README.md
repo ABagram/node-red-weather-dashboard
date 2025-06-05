@@ -1,9 +1,14 @@
 # Weather Dashboard
 ![image](https://github.com/user-attachments/assets/d44921b3-defc-44dd-9c5d-b9d30207b21b)
 ## Key Features
+- Template nodes with CSS. The design of the widgets resemble that of smart watches. The color palette is based on the color scheme of the [icons](https://openweathermap.org/weather-conditions) made available by OpenWeatherMap.
+- Function nodes for timestamp conversion, dynamic images (i.e. section of `img` link changes based on the weather), case conversion (i.e. lowercase to Title Case), and wind direction calculations.
 
 > [!WARNING]
-> Free API keys
+> Free OpenWeatherMap API keys have a limited number of calls per day.
+
+> [!TIP]
+> During the development phase, consider manual reinjection as opposed to reinjection at intervals.
 
 ## Pre-requisites
 1. Install the latest LTS version of [Node.js](https://nodejs.org/en/).
