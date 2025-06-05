@@ -1,0 +1,728 @@
+[
+    {
+        "id": "ed7830e5476d7927",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "58a1571e43192105",
+        "type": "inject",
+        "z": "ed7830e5476d7927",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "60",
+        "topic": "",
+        "payload": "object",
+        "payloadType": "date",
+        "x": 130,
+        "y": 60,
+        "wires": [
+            [
+                "3836b28892a16c21",
+                "59b6c8981b8a45c9"
+            ]
+        ]
+    },
+    {
+        "id": "3836b28892a16c21",
+        "type": "openweathermap",
+        "z": "ed7830e5476d7927",
+        "name": "",
+        "wtype": "current",
+        "lon": "",
+        "lat": "",
+        "city": "Davao",
+        "country": "PH",
+        "language": "en",
+        "x": 270,
+        "y": 120,
+        "wires": [
+            [
+                "f592090aa94ffa2a",
+                "ab9d993a9fa24c62",
+                "a427b9bb676a8cbd",
+                "0694f799b3a31dd8",
+                "bd1906b8d47272ef",
+                "0fe726a06bc5898f",
+                "4c13b76d36ff7b6d",
+                "7dc170878e7a461d",
+                "5485945e2ffcab80",
+                "b26cf93ea3487498",
+                "2230717c54569220",
+                "78240c4fe5740a2c",
+                "3a521199cb9f14d7",
+                "21f12dd759205f8e",
+                "66ad3c378e8b11af"
+            ]
+        ]
+    },
+    {
+        "id": "f592090aa94ffa2a",
+        "type": "debug",
+        "z": "ed7830e5476d7927",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "ab9d993a9fa24c62",
+        "type": "change",
+        "z": "ed7830e5476d7927",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.tempc",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 180,
+        "wires": [
+            [
+                "f4d78891f58bd4c7"
+            ]
+        ]
+    },
+    {
+        "id": "f4d78891f58bd4c7",
+        "type": "ui_text",
+        "z": "ed7830e5476d7927",
+        "group": "9d6cad620854ad44",
+        "order": 1,
+        "width": "2",
+        "height": "1",
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}°C",
+        "layout": "row-left",
+        "className": "left-align",
+        "style": false,
+        "font": "",
+        "fontSize": "20",
+        "color": "#ffffff",
+        "x": 610,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "5af7fc8eba7244dc",
+        "type": "comment",
+        "z": "ed7830e5476d7927",
+        "name": "",
+        "info": "Would be nice to inject every few seconds to have a real-time weather update; however, to avoid reaching the maximum api calls for a free user account, manual injection will be done.",
+        "x": 120,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "dea5d99ea3a4986d",
+        "type": "ui_text",
+        "z": "ed7830e5476d7927",
+        "group": "9953da78e69684d9",
+        "order": 1,
+        "width": "3",
+        "height": "1",
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload.date}}",
+        "layout": "row-left",
+        "className": "",
+        "style": true,
+        "font": "",
+        "fontSize": "16",
+        "color": "#ed6e4d",
+        "x": 610,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "59b6c8981b8a45c9",
+        "type": "function",
+        "z": "ed7830e5476d7927",
+        "name": "convert_timestamp",
+        "func": "// Get the injected timestamp from msg.payload\nconst timestamp = Number(msg.payload); // Ensure it's a number\n\nconst current_date = new Date(timestamp);\n\n// Convert to formatted date (e.g., \"June 6, 2025\")\nconst current_date_formatted = current_date.toLocaleDateString('en-US', {\n    year: 'numeric',\n    month: 'long',\n    day: 'numeric'\n});\n\n// Format times correctly\nconst current_time_formatted = current_date.toLocaleTimeString('en-US', {\n    timeZone: 'Asia/Shanghai',\n    hour: '2-digit',\n    minute: '2-digit',\n    hour12: false\n});\n\n// Send formatted results\nmsg.payload = {\n    date: current_date_formatted,\n    time: current_time_formatted\n};\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 20,
+        "wires": [
+            [
+                "95952377f98c05ab",
+                "dea5d99ea3a4986d"
+            ]
+        ]
+    },
+    {
+        "id": "95952377f98c05ab",
+        "type": "ui_text",
+        "z": "ed7830e5476d7927",
+        "group": "9953da78e69684d9",
+        "order": 2,
+        "width": "1",
+        "height": "1",
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload.time}}",
+        "layout": "row-right",
+        "className": "md-card",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 610,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "bdd263472ec2a310",
+        "type": "ui_template",
+        "z": "ed7830e5476d7927",
+        "group": "9953da78e69684d9",
+        "name": "",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "format": "<div ng-bind-html=\"msg.payload\"></div>\n\n<style>\n\n@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');\n\n.container{\n    padding: 20px;\n}\n\n.left-align{\n    align-items: left;\n    align-content: left;\n}\n\nbody.nr-dashboard-theme{\n    background-color: #141414ff;\n    font-family: 'DotGothic16', sans-serif;\n}\n\n.nr-dashboard-theme .nr-dashboard-template {\n    background-color: transparent;\n}\n\n.nr-dashboard-theme ui-card-panel {\n    border: none;\n    background-color: black;\n    margin: 20px;\n}\n\nbody.nr-dashboard-theme md-content md-card {\n    background-color: transparent;\n}\n\nui-card-panel{\n    background-color: red;\n    border-radius: 24px;\n    margin: 10px;\n}\n\nmd-card {\n    background-color: transparent;\n    padding: 2px;\n    line-height: 1.1;\n}\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "global",
+        "className": "",
+        "x": 320,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2ea0c1141f4fb4ad",
+        "type": "ui_text",
+        "z": "ed7830e5476d7927",
+        "group": "1a5d81d8910fd796",
+        "order": 2,
+        "width": "2",
+        "height": "1",
+        "name": "",
+        "label": "Sunrise",
+        "format": "{{msg.payload.sunrise}}",
+        "layout": "col-center",
+        "className": "left-align",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1120,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "c048e86cf88c90e6",
+        "type": "ui_text",
+        "z": "ed7830e5476d7927",
+        "group": "1a5d81d8910fd796",
+        "order": 4,
+        "width": "2",
+        "height": "1",
+        "name": "",
+        "label": "Sunset",
+        "format": "{{msg.payload.sunset}}",
+        "layout": "col-center",
+        "className": "left-align",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1120,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "a427b9bb676a8cbd",
+        "type": "change",
+        "z": "ed7830e5476d7927",
+        "name": "det unix timestamp of sunrise",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.sunrise",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 260,
+        "wires": [
+            [
+                "0ea165f3ed1b182c"
+            ]
+        ]
+    },
+    {
+        "id": "0694f799b3a31dd8",
+        "type": "change",
+        "z": "ed7830e5476d7927",
+        "name": "det unix timestamp of sunset",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.sunset",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 320,
+        "wires": [
+            [
+                "33b4138a32662f97"
+            ]
+        ]
+    },
+    {
+        "id": "0ea165f3ed1b182c",
+        "type": "function",
+        "z": "ed7830e5476d7927",
+        "name": "convert unix sunrise timestamp to readable format",
+        "func": "// Debugging: Check if sunrise/sunset exist\nnode.warn(\"Sunrise timestamp: \" + msg.payload);\n\nconst sunrise_date = new Date(msg.payload*1000);\n\nconst gmt_offset = 8;\n\nlet utc_hours = sunrise_date.getUTCHours();\nlet utc_minutes = sunrise_date.getUTCMinutes();\n\nlet local_hours = utc_hours + gmt_offset;\n\nif (local_hours >= 24){\n    local_hours -= 24;\n} else if(local_hours<0){\n    local_hours += 24;\n}\n\nconst formatted_hours = String(local_hours).padStart(2,'0');\nconst formatted_minutes = String(utc_minutes).padStart(2,'0');\n\nconst sunrise_time_formatted = `${formatted_hours}:${formatted_minutes}`;\n\nmsg.payload = {\n    sunrise: sunrise_time_formatted\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 280,
+        "wires": [
+            [
+                "2ea0c1141f4fb4ad"
+            ]
+        ]
+    },
+    {
+        "id": "5485945e2ffcab80",
+        "type": "ui_text",
+        "z": "ed7830e5476d7927",
+        "group": "9d6cad620854ad44",
+        "order": 2,
+        "width": "1",
+        "height": "1",
+        "name": "",
+        "label": "Min",
+        "format": "{{msg.payload.temp_minc}}°C",
+        "layout": "col-center",
+        "className": "left-align",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 610,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "33b4138a32662f97",
+        "type": "function",
+        "z": "ed7830e5476d7927",
+        "name": "convert unix sunset timestamp to readable format",
+        "func": "// Debugging: Check if sunset/sunset exist\nnode.warn(\"Sunset timestamp: \" + msg.payload);\n\nconst sunset_date = new Date(msg.payload*1000);\n\nconst gmt_offset = 8;\n\nlet utc_hours = sunset_date.getUTCHours();\nlet utc_minutes = sunset_date.getUTCMinutes();\n\nlet local_hours = utc_hours + gmt_offset;\n\nif (local_hours >= 24){\n    local_hours -= 24;\n} else if(local_hours<0){\n    local_hours += 24;\n}\n\nconst formatted_hours = String(local_hours).padStart(2,'0');\nconst formatted_minutes = String(utc_minutes).padStart(2,'0');\n\nconst sunset_time_formatted = `${formatted_hours}:${formatted_minutes}`;\n\nmsg.payload = {\n    sunset: sunset_time_formatted\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 360,
+        "wires": [
+            [
+                "c048e86cf88c90e6"
+            ]
+        ]
+    },
+    {
+        "id": "bd1906b8d47272ef",
+        "type": "function",
+        "z": "ed7830e5476d7927",
+        "name": "function 1",
+        "func": "const icon_code = msg.payload.icon;\nmsg.payload.weather_icon_url = `https://openweathermap.org/img/wn/${icon_code}@2x.png`;\nnode.warn(\"Generated Icon URL: \" + msg.payload.weather_icon_url);\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 400,
+        "wires": [
+            [
+                "72626c32ae35c5dc"
+            ]
+        ]
+    },
+    {
+        "id": "72626c32ae35c5dc",
+        "type": "ui_template",
+        "z": "ed7830e5476d7927",
+        "group": "9953da78e69684d9",
+        "name": "Weather Icon",
+        "order": 3,
+        "width": "2",
+        "height": "1",
+        "format": "<div style=\"display: flex; justify-content: center; align-items: center; overflow: hidden\">\n    <img src=\"{{msg.payload.weather_icon_url}}\" alt=\"Weather Icon\" width=\"60\" height=\"auto\">\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 590,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0fe726a06bc5898f",
+        "type": "function",
+        "z": "ed7830e5476d7927",
+        "name": "function 2",
+        "func": "function capitalizeWords(str){\n    return str.replace(/\\b\\w/g, char => char.toUpperCase());\n}\n\nif (msg.payload.detail){\n    msg.payload.detail = capitalizeWords(msg.payload.detail);\n}\n\nnode.warn(\"Detail: \" + JSON.stringify(msg.payload.detail));\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 440,
+        "wires": [
+            [
+                "e9edc39c846828f1"
+            ]
+        ]
+    },
+    {
+        "id": "e9edc39c846828f1",
+        "type": "ui_text",
+        "z": "ed7830e5476d7927",
+        "group": "9953da78e69684d9",
+        "order": 4,
+        "width": "2",
+        "height": "1",
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload.detail}}",
+        "layout": "row-left",
+        "className": "left-align",
+        "style": false,
+        "font": "",
+        "fontSize": "20",
+        "color": "#ffffff",
+        "x": 590,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "4c13b76d36ff7b6d",
+        "type": "ui_template",
+        "z": "ed7830e5476d7927",
+        "group": "1a5d81d8910fd796",
+        "name": "Sunrise Icon",
+        "order": 1,
+        "width": "1",
+        "height": "1",
+        "format": "<div style=\"text-align: center;\">\n    <img src=\"http://openweathermap.org/img/wn/01d@2x.png\" alt=\"Sunrise Icon\" width=\"35\">\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1130,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7dc170878e7a461d",
+        "type": "ui_template",
+        "z": "ed7830e5476d7927",
+        "group": "1a5d81d8910fd796",
+        "name": "Sunset Icon",
+        "order": 3,
+        "width": "1",
+        "height": "1",
+        "format": "<div style=\"text-align: center;\">\n    <img src=\"http://openweathermap.org/img/wn/01n@2x.png\" alt=\"Sunset Icon\" width=\"35\">\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1130,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b26cf93ea3487498",
+        "type": "ui_text",
+        "z": "ed7830e5476d7927",
+        "group": "9953da78e69684d9",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload.description}}",
+        "layout": "row-left",
+        "className": "",
+        "style": true,
+        "font": "",
+        "fontSize": "12",
+        "color": "#ffffff",
+        "x": 630,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "2230717c54569220",
+        "type": "ui_text",
+        "z": "ed7830e5476d7927",
+        "group": "0e15a7350a9d8d9a",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload.humidity}}%",
+        "layout": "row-left",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 430,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "78240c4fe5740a2c",
+        "type": "ui_text",
+        "z": "ed7830e5476d7927",
+        "group": "9d6cad620854ad44",
+        "order": 2,
+        "width": "1",
+        "height": "1",
+        "name": "",
+        "label": "Max",
+        "format": "{{msg.payload.temp_maxc}}°C",
+        "layout": "col-center",
+        "className": "left-align",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 730,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "3a521199cb9f14d7",
+        "type": "ui_text",
+        "z": "ed7830e5476d7927",
+        "group": "f225b9c271101e15",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload.pressure}}hPa",
+        "layout": "row-left",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 490,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "21f12dd759205f8e",
+        "type": "ui_text",
+        "z": "ed7830e5476d7927",
+        "group": "2297b14cf054b75b",
+        "order": 1,
+        "width": "2",
+        "height": "1",
+        "name": "",
+        "label": "Speed",
+        "format": "{{msg.payload.windspeed}}",
+        "layout": "col-center",
+        "className": "left-align",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 490,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "c28e0c6a76a5d9eb",
+        "type": "ui_text",
+        "z": "ed7830e5476d7927",
+        "group": "2297b14cf054b75b",
+        "order": 2,
+        "width": "2",
+        "height": "1",
+        "name": "",
+        "label": "Direction",
+        "format": "{{msg.payload.wind_direction_text}}",
+        "layout": "col-center",
+        "className": "left-align",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 500,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "66ad3c378e8b11af",
+        "type": "function",
+        "z": "ed7830e5476d7927",
+        "name": "getWindDirection",
+        "func": "function getWindDirection(degrees) {\n    const directions = [\"N\", \"NNE\", \"NE\", \"ENE\", \"E\", \"ESE\", \"SE\", \"SSE\",\n        \"S\", \"SSW\", \"SW\", \"WSW\", \"W\", \"WNW\", \"NW\", \"NNW\"];\n    return directions[Math.round(degrees / 22.5) % 16];\n}\n\nmsg.payload.wind_direction_text = getWindDirection(msg.payload.winddirection);\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 580,
+        "wires": [
+            [
+                "c28e0c6a76a5d9eb"
+            ]
+        ]
+    },
+    {
+        "id": "9d6cad620854ad44",
+        "type": "ui_group",
+        "name": "Temp",
+        "tab": "fe2363ae67ba65c4",
+        "order": 2,
+        "disp": true,
+        "width": "4",
+        "collapse": false,
+        "className": "container"
+    },
+    {
+        "id": "9953da78e69684d9",
+        "type": "ui_group",
+        "name": "Date and Time",
+        "tab": "fe2363ae67ba65c4",
+        "order": 1,
+        "disp": false,
+        "width": "4",
+        "collapse": false,
+        "className": "container"
+    },
+    {
+        "id": "1a5d81d8910fd796",
+        "type": "ui_group",
+        "name": "Sun",
+        "tab": "fe2363ae67ba65c4",
+        "order": 5,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": "container"
+    },
+    {
+        "id": "0e15a7350a9d8d9a",
+        "type": "ui_group",
+        "name": "Humidity",
+        "tab": "fe2363ae67ba65c4",
+        "order": 3,
+        "disp": true,
+        "width": "2",
+        "collapse": false,
+        "className": "container"
+    },
+    {
+        "id": "f225b9c271101e15",
+        "type": "ui_group",
+        "name": "Pressure",
+        "tab": "fe2363ae67ba65c4",
+        "order": 5,
+        "disp": true,
+        "width": "2",
+        "collapse": false,
+        "className": "container"
+    },
+    {
+        "id": "2297b14cf054b75b",
+        "type": "ui_group",
+        "name": "Wind",
+        "tab": "fe2363ae67ba65c4",
+        "order": 6,
+        "disp": true,
+        "width": "4",
+        "collapse": false,
+        "className": "container"
+    },
+    {
+        "id": "fe2363ae67ba65c4",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "",
+        "disabled": false,
+        "hidden": false
+    }
+]
