@@ -5,13 +5,17 @@
 - Function nodes for timestamp conversion, dynamic images (i.e. section of `img` link changes based on the weather), case conversion (i.e. lowercase to Title Case), and wind direction calculations.
 
 > [!WARNING]
-> Free OpenWeatherMap API keys have a limited number of calls per day.
+> Free OpenWeatherMap API keys have a limited number of 60 calls per minute. Hourly forecast and daily forecast are unavailable.
 
 > [!TIP]
 > During the development phase, consider manual reinjection as opposed to reinjection at intervals.
 
 ## Pre-requisites
+
+### Node.js
 1. Install the latest LTS version of [Node.js](https://nodejs.org/en/).
+
+### Node-RED
 2. In command prompt, execute `npm install -g --unsafe-perm node-red`.
 > [!NOTE]
 > `-g` installs Node-RED as a global module.
@@ -20,12 +24,16 @@
 > [!CAUTION]
 > Terminal must be kept open to keep Node-RED running.
 
-1. Create an account in [OpenWeatherMap](https://openweathermap.org/). Confirm your email.
-2.
-3. 
+### OpenWeatherMap
+5. Create an account in [OpenWeatherMap](https://openweathermap.org/). Confirm your email.
+6. Click on your username > My API keys. Copy the available API key or generate then copy a new one.
+
+### Development Environment 
+7. 
+
 - References:
   - [Running on Windows: Node-RED](https://nodered.org/docs/getting-started/windows)
 
-Font: DotGothic16 [Google Fonts](https://fonts.google.com/specimen/DotGothic16/) [GitHub](https://github.com/fontworks-fonts/DotGothic16)
-Icons: https://openweathermap.org/weather-conditions
+- Font: DotGothic16 [Google Fonts](https://fonts.google.com/specimen/DotGothic16/) [GitHub](https://github.com/fontworks-fonts/DotGothic16)
+- Icons: https://openweathermap.org/weather-conditions
 
