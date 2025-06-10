@@ -10,7 +10,7 @@
 > [!TIP]
 > During the development phase, consider manual reinjection as opposed to reinjection at intervals.
 
-## Pre-requisites
+## Running the Dashboard Locally
 
 ### Node.js
 1. Install the latest LTS version of [Node.js](https://nodejs.org/en/).
@@ -30,6 +30,8 @@
 
 ### Development Environment 
 7. 
+
+## Replication
 
 - References:
   - [Running on Windows: Node-RED](https://nodered.org/docs/getting-started/windows)
