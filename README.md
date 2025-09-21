@@ -17,6 +17,7 @@
 
 ### Node-RED
 2. In the command prompt, execute the following:
+   
    ```
    npm install -g --unsafe-perm node-red
    ```
@@ -26,6 +27,7 @@
 > [!NOTE]
 > `-g` installs Node-RED as a global module.
 3. Start the Node-RED server.
+
    ```
    node-red
    ```
@@ -43,6 +45,16 @@
 9. <kbd>Ctrl + I</kbd> to open the `Import nodes` overlay. 
 10. Click on `select a file to import`. This will open the file dialog box. Locate the downloaded `flows.json` file.
 11. Locate the `openweathermap` node. Paste the API key from step 7 into the API Key field in the node editor. Change other fields as desired.
+
+### Dashboard
+12. Copy the link from step 4, then add `ui` at the end (e.g. http://127.0.0.1:1880/ui).
+13. Inject the `timestamp` node in the development environment to update the weather details to that of the current time.
+    
+    <img width="1920" height="827" alt="image" src="https://github.com/user-attachments/assets/5a27978a-35e9-4363-8bb4-df0fc386dbc3" />
+
+15. (Optional) Modify the `timestamp` node to automate the injection at intervals.
+    
+    <img width="1920" height="827" alt="image" src="https://github.com/user-attachments/assets/56459616-c7ed-418a-af25-565192db61d4" />
 
 ## Resources
 
