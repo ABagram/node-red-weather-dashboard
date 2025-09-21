@@ -42,6 +42,7 @@
 8. Download the [flows.json](https://github.com/ABagram/node-red-weather-dashboard/blob/main/flows.json) file.
 9. <kbd>Ctrl + I</kbd> to open the `Import nodes` overlay. 
 10. Click on `select a file to import`. This will open the file dialog box. Locate the downloaded `flows.json` file.
+11. Locate the `openweathermap` node. Paste the API key from step 7 into the API Key field in the node editor. Change other fields as desired.
 
 ## Resources
 
