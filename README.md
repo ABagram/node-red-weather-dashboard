@@ -1,5 +1,7 @@
 # Weather Dashboard
-![image](https://github.com/user-attachments/assets/d44921b3-defc-44dd-9c5d-b9d30207b21b)
+<img width="1920" height="827" alt="image" src="https://github.com/user-attachments/assets/d2720b89-f2ba-4983-b38f-6682fbd4ecb4" />
+<img width="1920" height="827" alt="image" src="https://github.com/user-attachments/assets/420e5930-a9db-4957-8853-303e3f7af8f0" />
+
 ## Key Features
 - Template nodes with CSS. The design of the widgets resembles that of smart watches. The color palette is based on the color scheme of the [icons](https://openweathermap.org/weather-conditions) made available by OpenWeatherMap.
 - Function nodes for timestamp conversion, dynamic images (i.e. section of `img` link changes based on the weather), case conversion (i.e. lowercase to Title Case), and wind direction calculations.
