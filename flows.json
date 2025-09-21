@@ -2,7 +2,7 @@
     {
         "id": "ed7830e5476d7927",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Weather Dashboard",
         "disabled": false,
         "info": "",
         "env": []
@@ -24,8 +24,8 @@
         "topic": "",
         "payload": "object",
         "payloadType": "date",
-        "x": 130,
-        "y": 60,
+        "x": 230,
+        "y": 340,
         "wires": [
             [
                 "3836b28892a16c21",
@@ -44,12 +44,11 @@
         "city": "Davao",
         "country": "PH",
         "language": "en",
-        "x": 270,
-        "y": 120,
+        "x": 370,
+        "y": 440,
         "wires": [
             [
                 "f592090aa94ffa2a",
-                "ab9d993a9fa24c62",
                 "a427b9bb676a8cbd",
                 "0694f799b3a31dd8",
                 "bd1906b8d47272ef",
@@ -62,7 +61,8 @@
                 "78240c4fe5740a2c",
                 "3a521199cb9f14d7",
                 "21f12dd759205f8e",
-                "66ad3c378e8b11af"
+                "66ad3c378e8b11af",
+                "f4d78891f58bd4c7"
             ]
         ]
     },
@@ -78,36 +78,9 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 840,
-        "y": 60,
+        "x": 520,
+        "y": 440,
         "wires": []
-    },
-    {
-        "id": "ab9d993a9fa24c62",
-        "type": "change",
-        "z": "ed7830e5476d7927",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.tempc",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 440,
-        "y": 180,
-        "wires": [
-            [
-                "f4d78891f58bd4c7"
-            ]
-        ]
     },
     {
         "id": "f4d78891f58bd4c7",
@@ -117,17 +90,17 @@
         "order": 1,
         "width": "2",
         "height": "1",
-        "name": "",
+        "name": "Temp",
         "label": "",
-        "format": "{{msg.payload}}°C",
+        "format": "{{msg.payload.tempc}}°C",
         "layout": "row-left",
         "className": "left-align",
         "style": false,
         "font": "",
         "fontSize": "20",
         "color": "#ffffff",
-        "x": 610,
-        "y": 180,
+        "x": 690,
+        "y": 300,
         "wires": []
     },
     {
@@ -136,8 +109,8 @@
         "z": "ed7830e5476d7927",
         "name": "",
         "info": "Would be nice to inject every few seconds to have a real-time weather update; however, to avoid reaching the maximum api calls for a free user account, manual injection will be done.",
-        "x": 120,
-        "y": 20,
+        "x": 220,
+        "y": 300,
         "wires": []
     },
     {
@@ -148,7 +121,7 @@
         "order": 1,
         "width": "3",
         "height": "1",
-        "name": "",
+        "name": "Date",
         "label": "",
         "format": "{{msg.payload.date}}",
         "layout": "row-left",
@@ -157,8 +130,8 @@
         "font": "",
         "fontSize": "16",
         "color": "#ed6e4d",
-        "x": 610,
-        "y": 20,
+        "x": 690,
+        "y": 100,
         "wires": []
     },
     {
@@ -173,8 +146,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
-        "y": 20,
+        "x": 410,
+        "y": 120,
         "wires": [
             [
                 "95952377f98c05ab",
@@ -190,7 +163,7 @@
         "order": 2,
         "width": "1",
         "height": "1",
-        "name": "",
+        "name": "Time",
         "label": "",
         "format": "{{msg.payload.time}}",
         "layout": "row-right",
@@ -199,8 +172,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 610,
-        "y": 60,
+        "x": 690,
+        "y": 140,
         "wires": []
     },
     {
@@ -218,8 +191,8 @@
         "resendOnRefresh": true,
         "templateScope": "global",
         "className": "",
-        "x": 320,
-        "y": 500,
+        "x": 1560,
+        "y": 440,
         "wires": [
             []
         ]
@@ -241,8 +214,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 1120,
-        "y": 280,
+        "x": 1400,
+        "y": 660,
         "wires": []
     },
     {
@@ -262,8 +235,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 1120,
-        "y": 360,
+        "x": 1400,
+        "y": 700,
         "wires": []
     },
     {
@@ -285,8 +258,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 480,
-        "y": 260,
+        "x": 760,
+        "y": 660,
         "wires": [
             [
                 "0ea165f3ed1b182c"
@@ -312,8 +285,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 480,
-        "y": 320,
+        "x": 760,
+        "y": 700,
         "wires": [
             [
                 "33b4138a32662f97"
@@ -332,8 +305,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 830,
-        "y": 280,
+        "x": 1110,
+        "y": 660,
         "wires": [
             [
                 "2ea0c1141f4fb4ad"
@@ -348,7 +321,7 @@
         "order": 2,
         "width": "1",
         "height": "1",
-        "name": "",
+        "name": "Min Temp",
         "label": "Min",
         "format": "{{msg.payload.temp_minc}}°C",
         "layout": "col-center",
@@ -357,8 +330,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 610,
-        "y": 140,
+        "x": 700,
+        "y": 340,
         "wires": []
     },
     {
@@ -373,8 +346,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 830,
-        "y": 360,
+        "x": 1110,
+        "y": 700,
         "wires": [
             [
                 "c048e86cf88c90e6"
@@ -393,8 +366,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
-        "y": 400,
+        "x": 700,
+        "y": 200,
         "wires": [
             [
                 "72626c32ae35c5dc"
@@ -416,8 +389,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 590,
-        "y": 400,
+        "x": 870,
+        "y": 200,
         "wires": [
             []
         ]
@@ -434,8 +407,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
-        "y": 440,
+        "x": 700,
+        "y": 240,
         "wires": [
             [
                 "e9edc39c846828f1"
@@ -450,7 +423,7 @@
         "order": 4,
         "width": "2",
         "height": "1",
-        "name": "",
+        "name": "Detail",
         "label": "",
         "format": "{{msg.payload.detail}}",
         "layout": "row-left",
@@ -459,8 +432,8 @@
         "font": "",
         "fontSize": "20",
         "color": "#ffffff",
-        "x": 590,
-        "y": 440,
+        "x": 850,
+        "y": 240,
         "wires": []
     },
     {
@@ -478,8 +451,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1130,
-        "y": 240,
+        "x": 1570,
+        "y": 660,
         "wires": [
             []
         ]
@@ -499,8 +472,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1130,
-        "y": 320,
+        "x": 1570,
+        "y": 700,
         "wires": [
             []
         ]
@@ -513,7 +486,7 @@
         "order": 6,
         "width": 0,
         "height": 0,
-        "name": "",
+        "name": "Description",
         "label": "",
         "format": "{{msg.payload.description}}",
         "layout": "row-left",
@@ -522,8 +495,8 @@
         "font": "",
         "fontSize": "12",
         "color": "#ffffff",
-        "x": 630,
-        "y": 100,
+        "x": 710,
+        "y": 760,
         "wires": []
     },
     {
@@ -534,7 +507,7 @@
         "order": 0,
         "width": 0,
         "height": 0,
-        "name": "",
+        "name": "Humidity",
         "label": "",
         "format": "{{msg.payload.humidity}}%",
         "layout": "row-left",
@@ -543,8 +516,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 430,
-        "y": 60,
+        "x": 700,
+        "y": 440,
         "wires": []
     },
     {
@@ -555,7 +528,7 @@
         "order": 2,
         "width": "1",
         "height": "1",
-        "name": "",
+        "name": "Max Temp",
         "label": "Max",
         "format": "{{msg.payload.temp_maxc}}°C",
         "layout": "col-center",
@@ -564,8 +537,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 730,
-        "y": 140,
+        "x": 710,
+        "y": 380,
         "wires": []
     },
     {
@@ -576,7 +549,7 @@
         "order": 0,
         "width": 0,
         "height": 0,
-        "name": "",
+        "name": "Pressure",
         "label": "",
         "format": "{{msg.payload.pressure}}hPa",
         "layout": "row-left",
@@ -585,7 +558,7 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 490,
+        "x": 700,
         "y": 500,
         "wires": []
     },
@@ -597,7 +570,7 @@
         "order": 1,
         "width": "2",
         "height": "1",
-        "name": "",
+        "name": "Wind Speed",
         "label": "Speed",
         "format": "{{msg.payload.windspeed}}",
         "layout": "col-center",
@@ -606,8 +579,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 490,
-        "y": 540,
+        "x": 710,
+        "y": 560,
         "wires": []
     },
     {
@@ -618,7 +591,7 @@
         "order": 2,
         "width": "2",
         "height": "1",
-        "name": "",
+        "name": "Wind Direction",
         "label": "Direction",
         "format": "{{msg.payload.wind_direction_text}}",
         "layout": "col-center",
@@ -627,15 +600,15 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 500,
-        "y": 580,
+        "x": 940,
+        "y": 600,
         "wires": []
     },
     {
         "id": "66ad3c378e8b11af",
         "type": "function",
         "z": "ed7830e5476d7927",
-        "name": "getWindDirection",
+        "name": "get wind direction",
         "func": "function getWindDirection(degrees) {\n    const directions = [\"N\", \"NNE\", \"NE\", \"ENE\", \"E\", \"ESE\", \"SE\", \"SSE\",\n        \"S\", \"SSW\", \"SW\", \"WSW\", \"W\", \"WNW\", \"NW\", \"NNW\"];\n    return directions[Math.round(degrees / 22.5) % 16];\n}\n\nmsg.payload.wind_direction_text = getWindDirection(msg.payload.winddirection);\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
@@ -643,8 +616,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 580,
+        "x": 730,
+        "y": 600,
         "wires": [
             [
                 "c28e0c6a76a5d9eb"
