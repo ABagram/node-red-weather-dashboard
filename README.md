@@ -32,7 +32,7 @@
    node-red
    ```
 4. Locate the link preceded by a timestamp followed by `[info] Server now running at`.
-5. <kbd>Ctrl + click</kbd> on the link to access the Node-RED development environment and runtime dashboard in your web browser.
+5. <kbd>Ctrl + click</kbd> on the link to access the Node-RED workspace and runtime dashboard in your web browser.
 > [!CAUTION]
 > Terminal must be kept open to keep Node-RED running.
 
@@ -40,7 +40,7 @@
 6. Create an account in [OpenWeatherMap](https://openweathermap.org/). Confirm your email.
 7. Click on your username > My API keys. Copy the available API key or generate then copy a new one.
 
-### Development Environment 
+### Workspace 
 8. Download the [flows.json](https://github.com/ABagram/node-red-weather-dashboard/blob/main/flows.json) file.
 9. <kbd>Ctrl + I</kbd> to open the `Import nodes` overlay. 
 10. Click on `select a file to import`. This will open the file dialog box. Locate the downloaded `flows.json` file.
@@ -48,7 +48,7 @@
 
 ### Dashboard
 12. Copy the link from step 4, then add `ui` at the end (e.g. http://127.0.0.1:1880/ui).
-13. Inject the `timestamp` node in the development environment to update the weather details to that of the current time.
+13. Inject the `timestamp` node in the workspace to update the weather details to that of the current time.
     
     <img width="1920" height="827" alt="image" src="https://github.com/user-attachments/assets/5a27978a-35e9-4363-8bb4-df0fc386dbc3" />
 
